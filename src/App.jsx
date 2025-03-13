@@ -21,7 +21,7 @@ function MainContent() {
     const timer = setTimeout(() => {
       console.log('5 seconds passed, showing main content');
       setIsLoading(false);
-    }, 3000);
+    }, 4000);
 
     return () => {
       console.log('Cleaning up timer');
