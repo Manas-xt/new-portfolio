@@ -57,14 +57,14 @@ export function FloatingDockDemo() {
       icon: (
         <IconPackage className="h-full w-full text-white/90 group-hover:text-white transition-colors" />
       ),
-      href: "#",
+      href: "#about",
     },
     {
       title: "Linkedin",
       icon: (
         <IconBrandLinkedin className="h-full w-full text-white/90 group-hover:text-white transition-colors" />
       ),
-      href: "#",
+      href: "https://www.linkedin.com/in/manas-kumar-b23388300/",
     },
     {
       title: "GitHub",
@@ -78,7 +78,7 @@ export function FloatingDockDemo() {
       icon: (
         <IconMail className="h-full w-full text-white/90 group-hover:text-white transition-colors" />
       ),
-      href: "#",
+      href: "#background-lines",
     },
   ];
 

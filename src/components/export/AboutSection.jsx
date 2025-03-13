@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { Link } from 'react-router-dom';
+import { FileText } from 'lucide-react';
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -91,26 +93,29 @@ export function AboutSection() {
               variants={itemVariants}
               className="flex justify-center md:justify-start pt-2"
             >
-              <button
+              <Link
+                to="/resume"
                 className="relative backdrop-blur-md 
-                bg-gradient-to-r from-purple-900/50 via-indigo-800/50 to-purple-900/50
-                hover:from-purple-800/50 hover:via-indigo-700/50 hover:to-purple-800/50
-                border border-purple-500/20
-                font-bold text-white
-                px-6 py-3 rounded-full 
-                hover:scale-105 
-                transition-all duration-300 
-                shadow-[0_4px_20px_rgba(147,51,234,0.3)]
-                hover:shadow-[0_4px_20px_rgba(147,51,234,0.5)]
-                hover:border-purple-400/40
-                group
-                text-base md:text-lg lg:text-xl
-                min-w-[120px]"
+                  bg-gradient-to-r from-purple-900/50 via-indigo-800/50 to-purple-900/50
+                  hover:from-purple-800/50 hover:via-indigo-700/50 hover:to-purple-800/50
+                  border border-purple-500/20
+                  font-bold text-white
+                  px-6 py-3 rounded-full 
+                  hover:scale-105 
+                  transition-all duration-300 
+                  shadow-[0_4px_20px_rgba(147,51,234,0.3)]
+                  hover:shadow-[0_4px_20px_rgba(147,51,234,0.5)]
+                  hover:border-purple-400/40
+                  group
+                  text-base md:text-lg lg:text-xl
+                  min-w-[120px]
+                  flex items-center justify-center gap-2"
               >
+                <FileText className="w-5 h-5" />
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent group-hover:from-purple-300 group-hover:to-indigo-300">
                   My Resume
                 </span>
-              </button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

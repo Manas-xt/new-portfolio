@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
 const projects = [
@@ -24,14 +24,62 @@ const projects = [
 ];
 
 const Projects = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <section className="relative py-12 md:py-24" id="Projects">
-      <div className="container mx-auto px-4 md:px-5">
+      <motion.div 
+        ref={ref}
+        variants={containerVariants}
+        initial="hidden"
+        animate={controls}
+        className="container mx-auto px-4 md:px-5"
+      >
         {/* Section Title */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          variants={titleVariants}
           className="text-center mb-12 md:mb-20"
         >
           <h2 className="text-2xl md:text-3xl font-bold text mb-2 
@@ -48,9 +96,8 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 * index }}
+              variants={cardVariants}
+              custom={index}
               className="flex flex-col h-full"
             >
               {/* Card */}
@@ -82,18 +129,20 @@ const Projects = () => {
                   </p>
 
                   {/* Live Demo Link */}
-                  <a 
+                  <motion.a 
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-purple-400 hover:text-purple-300 
                     transition-colors group/link text-sm md:text-base mt-auto"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <span className="group-hover/link:underline">View Project</span>
                     <ExternalLink className="ml-1 w-3 h-3 md:w-4 md:h-4 
                       group-hover/link:translate-x-1 group-hover/link:-translate-y-1 
                       transition-transform duration-300" />
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
@@ -102,14 +151,12 @@ const Projects = () => {
 
         {/* View More Button */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          variants={cardVariants}
           className="text-center mt-8 md:mt-12"
         >
           {/* Add your View More button here if needed */}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

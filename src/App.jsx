@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,8 +10,9 @@ import { IconCloudDemo } from './components/export/IconCloudDemo'
 import Projects from './components/export/Projects'
 import { BackgroundLinesDemo } from './components/export/BackgroundLinesDemo'
 import LoadingAnimation from './components/LoadingAnimation'
+import ResumePage from './components/export/ResumePage'
 
-function App() {
+function MainContent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function App() {
     const timer = setTimeout(() => {
       console.log('5 seconds passed, showing main content');
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
 
     return () => {
       console.log('Cleaning up timer');
@@ -80,6 +82,17 @@ function App() {
       </AnimatePresence>
     </div>
   )
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/resume" element={<ResumePage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App
