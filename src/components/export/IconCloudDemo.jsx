@@ -45,11 +45,13 @@ const slugs = [
 
 // Updated chart data to show skills instead of months
 const chartData = [
-  { skill: "React", level: 85 },
-  { skill: "Node.js", level: 80 },
-  { skill: "Flutter", level: 75 },
-  { skill: "Database", level: 70 },
-  { skill: "DevOps", level: 65 },
+  { skill: "HTML & CSS", level: 85 },
+  { skill: "JavaScript", level: 75 },
+  { skill: "React", level: 70 },
+  { skill: "Node.js", level: 65 },
+  { skill: "Express", level: 60 },
+  { skill: "MnogoDB", level: 60 },
+  
 ];
 
 const chartConfig = {
