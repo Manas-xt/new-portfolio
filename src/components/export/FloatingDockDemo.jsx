@@ -345,7 +345,7 @@ export function FloatingDockDemo() {
               )}
             </div>
           </div>
-        </div>
+    </div>
       )}
     </>
   );

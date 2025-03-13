@@ -108,15 +108,16 @@ button:active ~ .cursor-outer,
   left: 0;
   z-index: 9999;
   transform: translate(-20%, -20%) rotate(-45deg);
-  transition: transform 0.1s ease;
+  transition: transform 0.01s linear;
   filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4));
+  contain: layout style paint;
+  isolation: isolate;
 }
 
 .cursor-arrow {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   transform-origin: center;
-  filter: url(#neon-glow);
 }
 
 .cursor-arrow-fill {
@@ -130,37 +131,20 @@ button:active ~ .cursor-outer,
   stroke-opacity: 0.8;
 }
 
-/* Hover effects with enhanced neon */
+/* Instant hover effects */
 a:hover ~ .custom-cursor,
 button:hover ~ .custom-cursor,
 [role="button"]:hover ~ .custom-cursor {
   transform: translate(-20%, -20%) rotate(-45deg) scale(1.2);
-  transition: transform 0.1s ease;
-  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.6));
+  transition: transform 0.01s linear;
 }
 
-/* Active state with intense neon */
+/* Instant active state */
 a:active ~ .custom-cursor,
 button:active ~ .custom-cursor,
 [role="button"]:active ~ .custom-cursor {
   transform: translate(-20%, -20%) rotate(-45deg) scale(0.9);
-  transition: transform 0.1s ease;
-  filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8));
-}
-
-/* Hover color change */
-a:hover ~ .custom-cursor .cursor-arrow-fill,
-button:hover ~ .custom-cursor .cursor-arrow-fill,
-[role="button"]:hover ~ .custom-cursor .cursor-arrow-fill {
-  fill: #9333ea;
-  opacity: 1;
-}
-
-a:hover ~ .custom-cursor .cursor-arrow-stroke,
-button:hover ~ .custom-cursor .cursor-arrow-stroke,
-[role="button"]:hover ~ .custom-cursor .cursor-arrow-stroke {
-  stroke: #9333ea;
-  stroke-opacity: 1;
+  transition: transform 0.01s linear;
 }
 
 /* Hide on touch devices */
@@ -175,13 +159,23 @@ button:hover ~ .custom-cursor .cursor-arrow-stroke,
   cursor: none !important;
 }
 
-/* Performance optimizations */
+/* Maximum performance optimizations */
 .custom-cursor {
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform: translate3d(-20%, -20%, 0) rotate(-45deg);
   -webkit-transform: translate3d(-20%, -20%, 0) rotate(-45deg);
+  pointer-events: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Add to your root element */
+:root {
+  touch-action: none;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Animation for neon pulse */

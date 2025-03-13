@@ -6,25 +6,41 @@ const CustomCursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
+  // Maximized speed configuration
   const springConfig = { 
-    damping: 15,
-    stiffness: 1000,
-    mass: 0.1
+    damping: 5,       // Minimal damping for fastest response
+    stiffness: 2000,  // Very high stiffness for immediate movement
+    mass: 0.01,       // Extremely low mass for quick response
+    restSpeed: 0.001, // Quick rest speed
+    restDelta: 0.001  // Small rest delta for precise movement
   };
 
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    let frame;
+    
     const moveCursor = (e) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+      // Cancel any pending frame
+      if (frame) {
+        cancelAnimationFrame(frame);
+      }
+      
+      // Update in the next frame
+      frame = requestAnimationFrame(() => {
+        cursorX.set(e.clientX);
+        cursorY.set(e.clientY);
+      });
     };
 
-    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousemove', moveCursor, { passive: true });
     document.documentElement.style.cursor = 'none';
 
     return () => {
+      if (frame) {
+        cancelAnimationFrame(frame);
+      }
       window.removeEventListener('mousemove', moveCursor);
       document.documentElement.style.cursor = 'auto';
     };
@@ -39,8 +55,8 @@ const CustomCursor = () => {
       }}
     >
       <svg 
-        width="24" 
-        height="24" 
+        width="18" 
+        height="18" 
         viewBox="0 0 24 24" 
         fill="none"
         className="cursor-arrow"

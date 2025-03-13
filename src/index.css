@@ -142,3 +142,29 @@ a, button, [role="button"], input, select, textarea {
     cursor: auto !important;
   }
 }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+.pulsing {
+  animation: pulse 4s ease-in-out infinite;
+}
