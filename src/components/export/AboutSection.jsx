@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { FileText } from 'lucide-react';
-
+import image from "../../assets/dp.png";
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -108,7 +108,7 @@ export function AboutSection() {
             className="flex justify-center"
           >
             <img
-              src="./src/assets/dp.png"
+              src={image}
               alt="Manas Kumar"
               className="w-[250px] md:w-[450px] mx-auto transform transition-transform duration-500 hover:scale-105"
             />

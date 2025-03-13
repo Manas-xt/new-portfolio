@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle, XCircle } from 'lucide-react';
-
+import image from "../../assets/contact.png";
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -298,7 +298,7 @@ ${formData.message}
           >
             <div className="relative w-full max-w-[250px] md:max-w-md aspect-square">
               <img 
-                src="./src/assets/contact.png" 
+                src={image} 
                 alt="Contact" 
                 className="w-full h-full object-cover rounded-full"
               />

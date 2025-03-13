@@ -1,24 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-
+import image from "../../assets/1.png";
+import image2 from "../../assets/3.png";
+import image3 from "../../assets/5.png";
 const projects = [
   {
     title: "Weather Monitoring System",
     description: "Real-time weather tracking system with interactive dashboards, alerts, and historical data analysis.",
-    image: "./src/assets/1.png",
+    image: image,
     link: "https://wms.manaskumar.me/"
   },
   {
     title: "Employee Management System",
     description: "Comprehensive HR solution for managing employee data, attendance, and performance tracking.",
-    image: "./src/assets/3.png",
+    image: image2,
     link: "https://nsp.manaskumar.me/"
   },
   {
     title: "AI Trip Planner",
     description: "AI-powered travel itinerary generator with personalized recommendations and real-time updates.",
-    image: "./src/assets/5.png",
+    image: image3,
     link: "https://digital-clock-7apia0l5u-manas-kumars-projects-514f9a69.vercel.app/"
   }
 ];
