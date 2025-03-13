@@ -163,21 +163,21 @@ ${formData.message}
                 className="flex items-center gap-3 text-white/70"
               >
                 <Mail className="w-5 h-5 text-purple-400" />
-                <span>youremail@example.com</span>
+                <span>portfolio4564@gmail.com</span>
               </motion.div>
               <motion.div 
                 variants={itemVariants}
                 className="flex items-center gap-3 text-white/70"
               >
                 <Phone className="w-5 h-5 text-purple-400" />
-                <span>+1 234 567 890</span>
+                <span>+91 9257793866</span>
               </motion.div>
               <motion.div 
                 variants={itemVariants}
                 className="flex items-center gap-3 text-white/70"
               >
                 <MapPin className="w-5 h-5 text-purple-400" />
-                <span>Your Location, City, Country</span>
+                <span>Jaipur, Rajasthan, India</span>
               </motion.div>
             </motion.div>
 
