@@ -175,7 +175,7 @@ export function FloatingDockDemo() {
       title: "GitHub",
       icon: (
         <div onClick={handleGithubClick}>
-          <IconBrandGithub className="h-full w-full text-white/90 group-hover:text-white transition-colors" />
+          <IconBrandGithub className="h-full w-full text-white/90 group-hover:text-white transition-colors"  onClick={handleGithubClick}/>
         </div>
       ),
       href: "#",

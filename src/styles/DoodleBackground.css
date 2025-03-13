@@ -1,0 +1,143 @@
+.doodle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.doodle {
+  position: absolute;
+  opacity: 0.1;
+}
+
+.doodle-item {
+  width: 100px;
+  height: 100px;
+  fill: none;
+  stroke: #a855f7;
+  stroke-width: 2;
+}
+
+.doodle-path {
+  animation: drawPath 3s infinite alternate;
+}
+
+.doodle-dot {
+  fill: #a855f7;
+}
+
+.doodle-rect {
+  fill: none;
+  stroke: #a855f7;
+  animation: rotate 10s linear infinite;
+}
+
+.doodle-cross {
+  stroke: #a855f7;
+  stroke-width: 2;
+  animation: fade 4s infinite alternate;
+}
+
+.doodle-circle {
+  fill: none;
+  stroke: #a855f7;
+  animation: pulse 3s infinite;
+}
+
+.floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.code-symbol {
+  position: absolute;
+  font-family: monospace;
+  color: #a855f7;
+  opacity: 0.15;
+  font-size: 2rem;
+  animation: float 10s infinite;
+}
+
+/* Animations */
+@keyframes drawPath {
+  from {
+    stroke-dasharray: 0 1000;
+  }
+  to {
+    stroke-dasharray: 1000 0;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Responsive positioning */
+.code-symbol:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.code-symbol:nth-child(2) { top: 45%; right: 15%; animation-delay: -2s; }
+.code-symbol:nth-child(3) { bottom: 20%; left: 20%; animation-delay: -4s; }
+.code-symbol:nth-child(4) { bottom: 35%; right: 25%; animation-delay: -6s; }
+
+/* Add more doodle positions */
+.tech-stack {
+  top: 20%;
+  left: 15%;
+  transform: rotate(-15deg);
+}
+
+.creative {
+  bottom: 25%;
+  right: 10%;
+  transform: rotate(10deg);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .code-symbol {
+    font-size: 1.5rem;
+  }
+  
+  .doodle-item {
+    width: 80px;
+    height: 80px;
+  }
+} 

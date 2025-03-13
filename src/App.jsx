@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { motion, AnimatePresence } from 'framer-motion';
+import CustomCursor from './components/CustomCursor';
 
 import { AboutSection } from './components/export/AboutSection'
 import { BackgroundBeamsWithCollisionDemo } from './components/export/BackgroundBeamsWithCollisionDemo'
@@ -86,12 +87,15 @@ function MainContent() {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainContent />} />
-        <Route path="/resume" element={<ResumePage />} />
-      </Routes>
-    </Router>
+    <div className="relative">
+      <CustomCursor />
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/resume" element={<ResumePage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

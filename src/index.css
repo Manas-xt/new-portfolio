@@ -127,4 +127,18 @@
 *{
   font-family: "Anta", sans-serif;
   scroll-behavior: smooth;
+  cursor: none !important;
+}
+
+/* Add these styles */
+
+a, button, [role="button"], input, select, textarea {
+  cursor: none;
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
 }

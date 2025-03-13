@@ -1,0 +1,217 @@
+/* Base cursor styles */
+.cursor-outer,
+.cursor-inner {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 9999;
+  transition: width 0.2s, height 0.2s;
+}
+
+/* Outer cursor */
+.cursor-outer {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  mix-blend-mode: difference;
+}
+
+/* Inner cursor */
+.cursor-inner {
+  width: 8px;
+  height: 8px;
+  background: white;
+  mix-blend-mode: difference;
+}
+
+/* Dot in the center */
+.cursor-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+}
+
+/* Hover effects for interactive elements */
+a:hover ~ .cursor-outer,
+button:hover ~ .cursor-outer,
+[role="button"]:hover ~ .cursor-outer {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+a:hover ~ .cursor-inner,
+button:hover ~ .cursor-inner,
+[role="button"]:hover ~ .cursor-inner {
+  width: 12px;
+  height: 12px;
+}
+
+/* Active state */
+a:active ~ .cursor-outer,
+button:active ~ .cursor-outer,
+[role="button"]:active ~ .cursor-outer {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Hide on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-outer,
+  .cursor-inner {
+    display: none;
+  }
+}
+
+/* Remove default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Performance optimizations */
+.cursor-outer,
+.cursor-inner {
+  will-change: transform, width, height;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+}
+
+/* Optional: Add these styles for better contrast on different backgrounds */
+.light-theme .cursor-outer {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.light-theme .cursor-inner,
+.light-theme .cursor-dot {
+  background: black;
+}
+
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate(-20%, -20%) rotate(-45deg);
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4));
+}
+
+.cursor-arrow {
+  width: 24px;
+  height: 24px;
+  transform-origin: center;
+  filter: url(#neon-glow);
+}
+
+.cursor-arrow-fill {
+  fill: url(#cursor-gradient);
+  opacity: 0.9;
+}
+
+.cursor-arrow-stroke {
+  stroke: #a855f7;
+  stroke-linejoin: round;
+  stroke-opacity: 0.8;
+}
+
+/* Hover effects with enhanced neon */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+[role="button"]:hover ~ .custom-cursor {
+  transform: translate(-20%, -20%) rotate(-45deg) scale(1.2);
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.6));
+}
+
+/* Active state with intense neon */
+a:active ~ .custom-cursor,
+button:active ~ .custom-cursor,
+[role="button"]:active ~ .custom-cursor {
+  transform: translate(-20%, -20%) rotate(-45deg) scale(0.9);
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8));
+}
+
+/* Hover color change */
+a:hover ~ .custom-cursor .cursor-arrow-fill,
+button:hover ~ .custom-cursor .cursor-arrow-fill,
+[role="button"]:hover ~ .custom-cursor .cursor-arrow-fill {
+  fill: #9333ea;
+  opacity: 1;
+}
+
+a:hover ~ .custom-cursor .cursor-arrow-stroke,
+button:hover ~ .custom-cursor .cursor-arrow-stroke,
+[role="button"]:hover ~ .custom-cursor .cursor-arrow-stroke {
+  stroke: #9333ea;
+  stroke-opacity: 1;
+}
+
+/* Hide on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+/* Remove default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Performance optimizations */
+.custom-cursor {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(-20%, -20%, 0) rotate(-45deg);
+  -webkit-transform: translate3d(-20%, -20%, 0) rotate(-45deg);
+}
+
+/* Animation for neon pulse */
+@keyframes neonPulse {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4));
+  }
+}
+
+/* Optional: Add this class to the custom-cursor for constant animation */
+.custom-cursor {
+  animation: neonPulse 2s infinite;
+}
+
+/* Optional: Add these styles for better contrast on light backgrounds */
+.light-theme .cursor-arrow-fill {
+  fill: #1a1a1a;
+}
+
+.light-theme .cursor-arrow-stroke {
+  stroke: rgba(0, 0, 0, 0.8);
+}
+
+.light-theme .cursor-dot {
+  background: #1a1a1a;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
