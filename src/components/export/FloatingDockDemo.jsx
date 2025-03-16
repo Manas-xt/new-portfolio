@@ -20,14 +20,28 @@ import {
   IconBrandTwitter,
 } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 
-const BioSection = ({ githubData }) => (
+const BioSection = ({ githubData, readmeContent }) => (
   <div className="bg-purple-500/5 rounded-xl p-4 space-y-4 border border-purple-500/20">
     <div className="space-y-2">
       <h6 className="text-purple-400 font-semibold">About Me</h6>
-      <p className="text-white/80 text-sm md:text-base leading-relaxed">
-        {githubData.bio || "No bio available"}
-      </p>
+      {readmeContent ? (
+        <div 
+          className="text-white/80 prose prose-sm md:prose-base prose-invert max-w-none readme-content"
+          dangerouslySetInnerHTML={{ 
+            __html: DOMPurify.sanitize(marked(readmeContent), {
+              ADD_TAGS: ['img'],
+              ADD_ATTR: ['src', 'alt', 'align']
+            })
+          }}
+        />
+      ) : (
+        <p className="text-white/80 text-sm md:text-base leading-relaxed">
+          {githubData.bio || "No profile README available"}
+        </p>
+      )}
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -83,6 +97,7 @@ export function FloatingDockDemo() {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [readmeContent, setReadmeContent] = useState(null);
 
   // Replace with your GitHub username
   const GITHUB_USERNAME = "Manas-xt";
@@ -98,6 +113,18 @@ export function FloatingDockDemo() {
       // Fetch repositories
       const reposResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=5`);
       const reposData = await reposResponse.json();
+
+      // Fetch README content
+      try {
+        const readmeResponse = await fetch(`https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_USERNAME}/main/README.md`);
+        if (readmeResponse.ok) {
+          const readmeText = await readmeResponse.text();
+          setReadmeContent(readmeText);
+        }
+      } catch (readmeError) {
+        console.warn('Could not fetch README:', readmeError);
+        setReadmeContent(null);
+      }
 
       setGithubData(userData);
       setRepos(reposData);
@@ -236,7 +263,7 @@ export function FloatingDockDemo() {
                       <img
                         src={githubData.avatar_url}
                         alt="GitHub Profile"
-                        className="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-purple-500/30"
+                        className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-purple-500/30"
                       />
                       <div className="absolute inset-0 rounded-full bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -253,39 +280,11 @@ export function FloatingDockDemo() {
                         </h4>
                         <p className="text-purple-400">@{githubData.login}</p>
                       </div>
-
-                      {/* GitHub Stats */}
-                      <div className="grid grid-cols-3 gap-4 text-center">
-                        <div className="bg-purple-500/10 rounded-lg p-2">
-                          <div className="text-purple-400 font-bold">Repositories</div>
-                          <div className="text-white">{githubData.public_repos}</div>
-                        </div>
-                        <div className="bg-purple-500/10 rounded-lg p-2">
-                          <div className="text-purple-400 font-bold">Followers</div>
-                          <div className="text-white">{githubData.followers}</div>
-                        </div>
-                        <div className="bg-purple-500/10 rounded-lg p-2">
-                          <div className="text-purple-400 font-bold">Following</div>
-                          <div className="text-white">{githubData.following}</div>
-                        </div>
-                      </div>
-
-                      {/* Visit Profile Button */}
-                      <a
-                        href={githubData.html_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 
-                          text-white rounded-lg transition-colors duration-200"
-                      >
-                        <IconBrandGithub className="w-5 h-5" />
-                        Visit Profile
-                      </a>
                     </div>
                   </div>
 
                   {/* Detailed Bio Section */}
-                  <BioSection githubData={githubData} />
+                  <BioSection githubData={githubData} readmeContent={readmeContent} />
 
                   {/* Recent Repositories */}
                   <div className="space-y-3">
@@ -341,11 +340,25 @@ export function FloatingDockDemo() {
                       ))}
                     </div>
                   </div>
+
+                  {/* Visit Profile Button - Now at the bottom */}
+                  <div className="flex justify-center pt-4">
+                    <a
+                      href={githubData.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-purple-500 hover:bg-purple-600 
+                        text-white rounded-lg transition-colors duration-200"
+                    >
+                      <IconBrandGithub className="w-5 h-5" />
+                      Visit GitHub Profile
+                    </a>
+                  </div>
                 </>
               )}
             </div>
           </div>
-    </div>
+        </div>
       )}
     </>
   );

@@ -3,6 +3,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { FileText } from 'lucide-react';
 import image from "../../assets/dp.png";
+import file from "../../assets/resume.pdf";
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -136,7 +137,8 @@ export function AboutSection() {
               className="flex justify-center md:justify-start pt-2"
             >
               <Link
-                to="/resume"
+                to={file}
+                target="_blank"
                 className="relative backdrop-blur-md 
                   bg-gradient-to-r from-purple-900/50 via-indigo-800/50 to-purple-900/50
                   hover:from-purple-800/50 hover:via-indigo-700/50 hover:to-purple-800/50

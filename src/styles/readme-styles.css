@@ -1,0 +1,57 @@
+.readme-content {
+  width: 100%;
+}
+
+.readme-content img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+.readme-content p {
+  margin-bottom: 1rem;
+}
+
+.readme-content a {
+  color: #a855f7; /* Purple-500 in Tailwind */
+  text-decoration: none;
+}
+
+.readme-content a:hover {
+  text-decoration: underline;
+}
+
+.readme-content h1,
+.readme-content h2,
+.readme-content h3,
+.readme-content h4,
+.readme-content h5,
+.readme-content h6 {
+  color: #fff;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.readme-content ul,
+.readme-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.readme-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.readme-content table th,
+.readme-content table td {
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 0.5rem;
+}
+
+.readme-content code {
+  background-color: rgba(139, 92, 246, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+} 
