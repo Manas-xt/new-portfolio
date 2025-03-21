@@ -21,7 +21,7 @@ const projects = [
     title: "AI Trip Planner",
     description: "AI-powered travel itinerary generator with personalized recommendations and real-time updates.",
     image: image3,
-    link: "https://digital-clock-7apia0l5u-manas-kumars-projects-514f9a69.vercel.app/"
+    link: "#"
   }
 ];
 
